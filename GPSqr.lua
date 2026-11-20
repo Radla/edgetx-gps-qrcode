@@ -111,7 +111,7 @@ local function start_job(text)
   local cw = {0x40 + floor(len / 16)}
   local prev = len % 16
   for k = 1, len do
-    local b = text:byte(k)
+    local b = string.byte(text, k) -- EdgeTX kennt kein text:byte()
     cw[#cw + 1] = prev * 16 + floor(b / 16)
     prev = b % 16
   end

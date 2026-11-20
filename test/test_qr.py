@@ -3,6 +3,7 @@ from PIL import Image
 
 STUB = r'''
 LCD_W, LCD_H, SMLSIZE, INVERS = 128, 64, 0, 1
+debug.setmetatable("", nil) -- wie EdgeTX: keine String-Methoden (s:byte() geht nicht)
 T = 0
 rects = {}
 GPS = {lat=0, lon=0}
