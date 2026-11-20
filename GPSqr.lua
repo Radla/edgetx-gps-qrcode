@@ -12,6 +12,8 @@
 local INVERTED   = false -- true fuer OLED-Displays (z. B. Jumper T14)
 local REFRESH    = 1500  -- neu erzeugen fruehestens alle 15 s (10-ms-Ticks)
 local STEP_ROWS  = 4     -- Arbeit pro Aufruf; kleiner = fluessiger, aber langsamer
+local TEST       = false -- true: feste Beispiel-Koordinaten, kein Modell/Sensor noetig.
+                         -- Sie wandern leicht, damit alle 15 s neu gerechnet wird.
 
 local floor, bxor = math.floor, bit32.bxor
 
@@ -312,12 +314,18 @@ local qr_lat, qr_lon = nil, nil
 local last_refresh = 0
 
 local function init()
+  if TEST then gps_id = -1; return end
   local fi = getFieldInfo("GPS")
   gps_id = fi and fi.id or nil
 end
 
 local function background()
-  if gps_id then
+  if TEST then
+    local t = floor(getTime() / 100)
+    lat = string.format("%.6f", 52.520008 + t * 0.000001)
+    lon = string.format("%.6f", 13.404954 - t * 0.000001)
+    has_gps = true
+  elseif gps_id then
     local gps = getValue(gps_id)
     if type(gps) == "table" and gps.lat and gps.lon then
       lat = string.format("%.6f", gps.lat)

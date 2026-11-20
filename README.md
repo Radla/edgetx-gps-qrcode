@@ -28,6 +28,16 @@ Für OLED-Funken (z. B. Jumper T14) oben im Skript `INVERTED = true` setzen. Die
 
 Läuft es noch zu ruckelig, `STEP_ROWS` von 4 auf 2 senken. Jeder Schritt wird dann kleiner, der Code ist aber langsamer fertig.
 
+## Testmodus (ohne Modell und GPS)
+
+Oben im Skript `TEST = true` setzen. Dann braucht das Skript keinen Sensor und zeigt Beispiel-Koordinaten (Berlin) an. Diese wandern minimal, sodass der QR-Code alle 15 s neu berechnet wird. So lässt sich prüfen, ob die Funke dabei flüssig bleibt, und der Code kann mit dem Handy gescannt werden. Für den echten Einsatz wieder `TEST = false` setzen.
+
+## Ohne GPS-Signal
+
+- **Kein Sensor `GPS`:** Anzeige „No GPS sensor / Please discover“.
+- **Sensor da, aber keine Daten:** Anzeige „No GPS data yet“.
+- **GPS ohne Fix:** Manche Flugcontroller senden dann 0/0. In dem Fall erscheint ein QR-Code für `geo:0.000000,0.000000`.
+
 ## Testen am Rechner
 
 ```bash
