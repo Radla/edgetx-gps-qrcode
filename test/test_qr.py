@@ -27,7 +27,8 @@ def run(path, lat, lon):
     lua = L52.LuaRuntime()
     lua.execute(STUB)
     lua.execute(f"GPS = {{lat={lat}, lon={lon}}}")
-    script = lua.execute(open(path).read())
+    src = open(path).read().replace("local TEST       = true", "local TEST       = false")  # Testmodus aus
+    script = lua.execute(src)
     script.init()
     measured = lua.globals().measured
     calls, maxc, total = 0, 0, 0
