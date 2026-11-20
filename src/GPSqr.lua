@@ -8,6 +8,11 @@
 --  * Jede Matrixzeile ist eine einzige Zahl (ein Bit pro Pixel), das spart RAM.
 --  * Die kleinste passende QR-Version wird genutzt (25x25 statt 29x29).
 --  * Keine Lookup-Tabellen fuer Reed-Solomon.
+--
+-- Copyright (c) 2026 Radla
+-- Copyright (c) 2024 Albert Koczy
+-- Copyright (c) 2012-2020, Patrick Gundlach and contributors, see https://github.com/speedata/luaqrcode
+-- BSD-3-Clause-Lizenz, vollstaendiger Text in LICENSE.md
 
 local INVERTED   = false -- true fuer OLED-Displays (z. B. Jumper T14)
 local REFRESH    = 1500  -- neu erzeugen fruehestens alle 15 s (10-ms-Ticks)

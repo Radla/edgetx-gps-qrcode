@@ -2,7 +2,7 @@
 
 Telemetrie-Skript für monochrome EdgeTX-Funken (128×64), das die letzte GPS-Position des Modells als QR-Code (`geo:lat,lon`) anzeigt. Handy-Kamera drauf halten, und die Karten-App öffnet den Punkt.
 
-Neu geschrieben nach der Idee von [alufers/edgetx-gps-qrcode](https://github.com/alufers/edgetx-gps-qrcode), weil das Original auf schwachen Funken wie der Jumper T-Lite einfriert oder keinen Speicher mehr hat.
+Dies ist ein Fork von [alufers/edgetx-gps-qrcode](https://github.com/alufers/edgetx-gps-qrcode) von Albert Koczy. Idee, Bedienung und Anzeige stammen von dort. Die QR-Erzeugung ist neu geschrieben, weil das Original auf schwachen Funken wie der Jumper T-Lite einfriert oder keinen Speicher mehr hat. Danke an alufers für das ursprüngliche Skript!
 
 ## Dateien für die SD-Karte
 
@@ -68,3 +68,13 @@ python3 -m venv .venv && .venv/bin/pip install lupa zxing-cpp pillow
 ```
 
 Das Skript läuft dabei in Lua 5.2 mit nachgebauten EdgeTX-Funktionen (auch ohne String-Methoden wie `s:byte()`, die EdgeTX nicht hat). Der gezeichnete Code wird mit zxing dekodiert und für fünf Testkoordinaten geprüft.
+
+## Lizenz
+
+BSD-3-Clause, siehe [LICENSE.md](LICENSE.md).
+
+- Copyright (c) 2026 Radla – Neufassung der QR-Erzeugung
+- Copyright (c) 2024 Albert Koczy ([alufers](https://github.com/alufers)) – ursprüngliches Skript
+- Copyright (c) 2012–2020 Patrick Gundlach and contributors ([luaqrcode](https://github.com/speedata/luaqrcode)) – Grundlage des ursprünglichen Skripts
+
+Die ursprünglichen Autoren haben diese Version weder geprüft noch empfohlen.

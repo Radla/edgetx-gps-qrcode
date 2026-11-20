@@ -14,6 +14,10 @@ node - <<'EOF'
 const fs = require('fs');
 const luamin = require('./.build/node_modules/luamin');
 const src = fs.readFileSync('src/GPSqr.lua', 'utf8');
+// Lizenztext als Kommentar voranstellen (BSD-3 verlangt ihn auch bei weitergegebenen Dateien;
+// Kommentare kosten auf der Funke keinen RAM).
+const header = '-- GPSqr (minifiziert, Quelle: https://github.com/Radla/edgetx-gps-qrcode)\n--\n'
+  + fs.readFileSync('LICENSE.md', 'utf8').trim().split('\n').map(l => ('-- ' + l).trimEnd()).join('\n') + '\n';
 const variants = {
   'GPSqr.lua':  src,
   'GPSqrT.lua': src.replace(/^local TEST       = false/m, 'local TEST       = true'),
@@ -21,7 +25,7 @@ const variants = {
 };
 for (const [name, code] of Object.entries(variants)) {
   if (code === src && name !== 'GPSqr.lua') throw new Error('Schalter nicht gefunden: ' + name);
-  fs.writeFileSync('dist/' + name, '-- GPSqr (minifiziert, Quelle: src/GPSqr.lua)\n' + luamin.minify(code) + '\n');
+  fs.writeFileSync('dist/' + name, header + luamin.minify(code) + '\n');
 }
 EOF
 ls -l dist
